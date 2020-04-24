@@ -10,6 +10,6 @@ $factory->define(Data::class, function (Faker $faker) {
         'id' => $faker->unique()->slug,
         'key' => $faker->slug,
         'value' =>
-            '{"name": "laravel/laravel", "type": "project", "description": "The Laravel Framework."}',
+            '{"name": "Hassan Azimi", "job": "developer", "description": "The Laravel Framework."}',
     ];
 });
