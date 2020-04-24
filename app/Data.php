@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Data extends Model
 {
-    protected $fillable = ['key', 'value'];
+    protected $fillable = ['id', 'key', 'value'];
 }

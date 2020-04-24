@@ -13,10 +13,12 @@
     @stack('before-scripts')
 </head>
 <body>
-<section>
-    @include('navbar')
+@include('navbar')
+<main class="container">
+    @include('partials.errors')
+    @include('partials.flash')
     @yield('content')
-</section>
+</main>
 <script src="{{ mix('js/app.js') }}"></script>
 @stack('after-scripts')
 </body>

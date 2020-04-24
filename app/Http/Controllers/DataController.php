@@ -8,34 +8,38 @@ use Illuminate\Http\Request;
 class DataController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
-        //
+        return view('encrypt');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $attribute = $request->validate([
+            'id' => 'required',
+            'key' => 'required',
+            'value' => 'required',
+        ]);
+
+        Data::create([
+            'id' => $attribute['id'],
+            'key' => $attribute['key'],
+            'value' => $attribute['value'],
+        ]);
+
+        session()->flash('flash', 'Thanks you');
+
+        return back();
     }
 
     /**

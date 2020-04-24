@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [DataController::class, 'create'])->name('create');
+Route::post('/encrypt', [DataController::class, 'store'])->name('store');
+
+// Route::get('/retrieve', [DataController::class, '']);
