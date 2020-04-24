@@ -8,11 +8,13 @@
     <title>@yield('title', config('app.name'))</title>
     <meta name="description" content="@yield('description', config('app.description'))">
     <meta name="keywords" content="@yield('keywords', config('app.keywords'))">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @stack('before-scripts')
 </head>
 <body>
 <section>
+    @include('navbar')
     @yield('content')
 </section>
 <script src="{{ mix('js/app.js') }}"></script>
