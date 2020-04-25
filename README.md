@@ -1,16 +1,19 @@
 
-Backend Coding Test - Recrypt
+# Digital Risks test - Piece of cake!
+
+## Backend Coding Test - Recrypt
+
 For this exercise you will be asked to build a simple app. 
 
 The task is a simplified version of something that we already do here at Digital Risks. 
 
-Requirements
+## Requirements
 - You must include at least one test
 - Create a private repo (GitHub does this for free) and invite morrislaptop
 - Include a README on how to run your solution
 
 
-Guidelines
+## Guidelines
 
 The main goal of the exercise is to see how you translate a business brief into a technical solution. This includes your approach, solution design, and logical thinking.
 
@@ -21,7 +24,7 @@ in a set amount of time.
 
 Have fun and keep in mind not all aspects of the evaluation need to be demonstrated in code. Explaining understanding via comments and/or verbal communication during the technical interview can be effective for the purpose of this test.
 
-Brief
+## Brief
 
 Using Laravel and any datastore you see fit, you need to create a service that exposes two endpoints to save and retrieve values while storing them securely. All data at rest must be securely encrypted with the key provided by the clients. The service needs to handle all error conditions gracefully.
 
