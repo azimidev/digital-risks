@@ -7,22 +7,11 @@ use Illuminate\Http\Request;
 
 class DataController extends Controller
 {
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\View\View
-     */
     public function create()
     {
         return view('encrypt');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function store(Request $request)
     {
         $attribute = $request->validate([
@@ -47,48 +36,26 @@ class DataController extends Controller
         return back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Data  $data
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Data $data)
+    public function index()
     {
-        //
+        return view('decrypt');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Data  $data
-     * @return void
-     */
-    public function edit(Data $data)
+    public function show(Request $request)
     {
-        //
-    }
+        $attribute = $request->validate([
+            'id' => 'required',
+            'key' => 'required',
+        ]);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Data  $data
-     * @return void
-     */
-    public function update(Request $request, Data $data)
-    {
-        //
-    }
+        $records = Data::where('id', 'like', "{$attribute['id']}%");
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Data  $data
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Data $data)
-    {
-        //
+        if (!$records->exists()) {
+            session()->flash('flash', 'Could not find the ID.');
+
+            return back();
+        }
+
+        return decrypt_with_key($request['key'], $records->pluck('value'));
     }
 }

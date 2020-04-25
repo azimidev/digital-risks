@@ -17,4 +17,5 @@ use App\Http\Controllers\DataController;
 Route::get('/', [DataController::class, 'create'])->name('create');
 Route::post('/encrypt', [DataController::class, 'store'])->name('store');
 
-// Route::get('/retrieve', [DataController::class, '']);
+Route::get('/decrypt', [DataController::class, 'index'])->name('index');
+Route::post('/retrieve', [DataController::class, 'show'])->name('show');

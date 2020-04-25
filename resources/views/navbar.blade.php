@@ -9,11 +9,11 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-            <a class="navbar-item" href="">
+            <a class="navbar-item" href="{{ route('create') }}">
                 Encrypt
             </a>
 
-            <a class="navbar-item" href="">
+            <a class="navbar-item" href="{{ route('index') }}">
                 Decrypt
             </a>
         </div>
