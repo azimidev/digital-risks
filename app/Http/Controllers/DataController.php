@@ -10,7 +10,7 @@ class DataController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -31,11 +31,16 @@ class DataController extends Controller
             'value' => 'required',
         ]);
 
-        Data::create([
-            'id' => $attribute['id'],
-            'key' => $attribute['key'],
-            'value' => $attribute['value'],
-        ]);
+        Data::updateOrCreate(
+            ['id' => $attribute['id']],
+            [
+                'key' => $attribute['key'],
+                'value' => encrypt_with_key(
+                    $attribute['key'],
+                    $attribute['value']
+                ),
+            ]
+        );
 
         session()->flash('flash', 'Thanks you');
 
@@ -57,7 +62,7 @@ class DataController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Data  $data
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function edit(Data $data)
     {
@@ -69,7 +74,7 @@ class DataController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Data  $data
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function update(Request $request, Data $data)
     {
