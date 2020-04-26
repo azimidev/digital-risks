@@ -48,6 +48,8 @@ class DataController extends Controller
             'key' => 'required',
         ]);
 
+        $attribute['id'] = str_replace('*', '', $attribute['id']);
+
         $records = Data::where('id', 'like', "%{$attribute['id']}%");
 
         if (!$records->exists()) {
