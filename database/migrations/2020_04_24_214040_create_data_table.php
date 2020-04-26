@@ -14,7 +14,6 @@ class CreateDataTable extends Migration
     public function up()
     {
         Schema::create('data', function (Blueprint $table) {
-            // $this->id();
             $table
                 ->string('id')
                 ->unique()

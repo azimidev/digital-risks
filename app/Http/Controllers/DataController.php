@@ -48,7 +48,7 @@ class DataController extends Controller
             'key' => 'required',
         ]);
 
-        $records = Data::where('id', 'like', "{$attribute['id']}%");
+        $records = Data::where('id', 'like', "%{$attribute['id']}%");
 
         if (!$records->exists()) {
             session()->flash('flash', 'Could not find the ID.');
@@ -56,6 +56,8 @@ class DataController extends Controller
             return back();
         }
 
-        return decrypt_with_key($request['key'], $records->pluck('value'));
+        $result = decrypt_with_key($request['key'], $records->pluck('value'));
+
+        return $result;
     }
 }
